@@ -6,7 +6,6 @@
 -- 1. Select all rows in the Departments table
 SELECT * FROM HR.DEPARTMENTS;
 
-
 -- ========================================
 -- 2
 -- ========================================
