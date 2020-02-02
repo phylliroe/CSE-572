@@ -44,7 +44,6 @@ join hr.departments d on e.department_id = d.department_id
 where e.last_name like '%a%';
 
 -- Question 5
--- SPECIFY EMPLOYEES IN TORONTO
 select 
     e.last_name,
     j.job_title,
@@ -52,7 +51,8 @@ select
     d.department_name
 from hr.employees e
 join hr.jobs j on e.job_id = j.job_id
-join hr.departments d on e.department_id = d.department_id;
+join hr.departments d on e.department_id = d.department_id
+where d.location_id = '1800';
 
 -- Question 6
 select 
