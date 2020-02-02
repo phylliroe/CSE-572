@@ -56,9 +56,12 @@ where d.location_id = '1800';
 
 -- Question 6
 select 
-    e.employee_id,
-    e.last_name
-from hr.employees e;
+    e.last_name as Employee,
+    e.employee_id as Emp#,
+    m.last_name as Manager,
+    m.employee_id as Mgr#
+from hr.employees e
+join hr.employees m on e.manager_id = m.employee_id;
 
 -- Question 7 
 
