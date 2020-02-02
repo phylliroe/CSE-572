@@ -64,6 +64,16 @@ from hr.employees e
 join hr.employees m on e.manager_id = m.employee_id;
 
 -- Question 7 
+select 
+    e.last_name as Employee,
+    e.employee_id as Emp#,
+    m.last_name as Manager,
+    m.employee_id as Mgr#
+from hr.employees e
+left join hr.employees m on e.manager_id = m.employee_id
+order by Emp#;
+
+
 
 -- Question 8 
 -- Jan 29, 2005
