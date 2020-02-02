@@ -73,10 +73,7 @@ from hr.employees e
 left join hr.employees m on e.manager_id = m.employee_id
 order by Emp#;
 
-
-
 -- Question 8 
--- Jan 29, 2005
 select 
     first_name || ' ' || last_name as NAME,
     hire_date
@@ -84,6 +81,14 @@ from hr.employees
 where hire_date < ( select hire_date from hr.employees where last_name = 'Davies');
 
 -- Question 9 
+select 
+    e.first_name || ' '|| e.last_name as Employee,
+    e.hire_date as "Emp Hired",
+    m.first_name || ' ' || m.last_name as Manager,
+    m.hire_date as "Mgr Hired"
+from hr.employees e
+left join hr.employees m on e.manager_id = m.employee_id
+where (e.hire_date < m.hire_date);
 
 -- Question 10 
 create view EMPLOYEE_UV as
