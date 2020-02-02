@@ -81,11 +81,25 @@ select
 from USER_VIEWS;
 -- 10 c
 select 
-    e.employee,
-    e.department_id
-from employee_uv e;
+    employee,
+    department_id
+from employee_uv;
 
 -- Question 11
+select * from hr.employees where department_id = '50';
+
+create view DEPT50 as
+select 
+    employee_id as EMPNO,
+    last_name as EMPLOYEE,
+    department_id as DEPTNO
+from hr.employees
+where department_id = '50'; 
+
+-- 11 a
+select * from DEPT50;
+-- 11 b
+-- 11 c
 
 select * from hr.employees;
 select * from hr.departments;
