@@ -60,6 +60,39 @@ select
     e.last_name
 from hr.employees e;
 
+-- Question 7 
+-- Question 8 
+-- Question 9 
+
+-- Question 10 
+create view EMPLOYEE_UV as
+select 
+    e.employee_id,
+    e.first_name || ' ' || e.last_name as EMPLOYEE,
+    e.department_id
+from hr.employees e;
+
+-- 10 a
+select * from EMPLOYEE_UV;
+-- 10 b
+select 
+    view_name,
+    text
+from USER_VIEWS;
+-- 10 c
+select 
+    e.employee,
+    e.department_id
+from employee_uv e;
+
+-- Question 11
+
+select * from hr.employees;
+select * from hr.departments;
+select * from hr.locations;
+select * from hr.jobs;
+
+drop view EMPLOYEE_UV;
 
 
 
