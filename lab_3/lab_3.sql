@@ -67,11 +67,10 @@ from hr.employees e;
 -- Question 10 
 create view EMPLOYEE_UV as
 select 
-    e.employee_id,
-    e.first_name || ' ' || e.last_name as EMPLOYEE,
-    e.department_id
-from hr.employees e;
-
+    employee_id,
+    first_name || ' ' || last_name as EMPLOYEE,
+    department_id
+from hr.employees;
 -- 10 a
 select * from EMPLOYEE_UV;
 -- 10 b
@@ -86,8 +85,6 @@ select
 from employee_uv;
 
 -- Question 11
-select * from hr.employees where department_id = '50';
-
 create view DEPT50 as
 select 
     employee_id as EMPNO,
@@ -95,11 +92,17 @@ select
     department_id as DEPTNO
 from hr.employees
 where department_id = '50'; 
-
 -- 11 a
 select * from DEPT50;
 -- 11 b
+select 
+    view_name,
+    text
+from user_views;
 -- 11 c
+update view DEPT50
+set DEPTNO='50'
+where EMPLOYEE='Matos';
 
 select * from hr.employees;
 select * from hr.departments;
