@@ -61,7 +61,15 @@ select
 from hr.employees e;
 
 -- Question 7 
+
 -- Question 8 
+-- Jan 29, 2005
+select 
+    first_name || ' ' || last_name as NAME,
+    hire_date
+from hr.employees
+where hire_date < ( select hire_date from hr.employees where last_name = 'Davies');
+
 -- Question 9 
 
 -- Question 10 
