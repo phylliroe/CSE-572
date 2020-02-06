@@ -35,30 +35,40 @@ create table EMP_PROJ (
 );
 
 
+INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
+VALUES (1000,'Steven','King','731 Fondren, Houston TX','M',30000,'Programmer',60);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (1000,'Steven','King','731 Fondren','Houston','TX','M',30);
-
-INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo)
-VALUES (1007,'Diana','Lorentz','638 Voss','Bellaire','TX','F',24);
+VALUES (1007,'Diana','Lorentz','638 Voss, Bellaire, TX','F',24000,'Clerk',20);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (2002,'Pat','Fay','3321 Castle','Spring','TX','F',15);
+VALUES (2002,'Pat','Fay','3321 Castle, Spring, TX','F',15000,'Sales  Representative',80);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (1760,'Jonathan','Taylor','561 Rice','Houston','TX','M',60);
+VALUES (1760,'Jonathan','Taylor','561 Rice, Houston, TX','M',60000,'Manager',20);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (1740,'Ellen','Abel','890 Stone','Houston','TX','F',65);
+VALUES (1740,'Ellen','Abel','890 Stone, Houston, TX','F',65000,'Manager',60);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (2060,'William','Gietz','450 Berry','Bellaire','TX','M',65);
+VALUES (2060,'William','Gietz','450 Berry, Bellaire, TX','M',65000,'Manager',80);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (2000,'Jennifer','Whalen','980 Fire Oak','Humble','TX','F',28);
+VALUES (2000,'Jennifer','Whalen','980 Fire Oak, Humble, TX','F',28000,'Clerk',60);
 
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
-VALUES (1444,'Peter','Vargas','975 Dallas','Houston','TX','M',20);
+VALUES (1444,'Peter','Vargas','975 Dallas, Houston, TX','M',20000,'Sales  Representative',80);
+
+
+
+INSERT INTO dept(deptNumber,deptName,Mgr) 
+VALUES (20,'Marketing',1760);
+
+INSERT INTO dept(deptNumber,deptName,Mgr)
+VALUES (60,'IT',1740);
+
+INSERT INTO dept(deptNumber,deptName,Mgr)
+VALUES (80,'Sales',2060);
 
 
 
