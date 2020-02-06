@@ -29,9 +29,9 @@ create table PROJ (
 );
 
 create table EMP_PROJ (
-    empNo number(4, 0) unique,
-    projNo number(2, 0) unique,
-    hoursWorked number(4, 0), 
+    empNo number(4, 0),
+    projNo number(2, 0),
+    hoursWorked number(4, 2), 
     primary key (empNo, projNo)
 );
 
@@ -116,7 +116,28 @@ alter table emp_proj
 add constraint proj_number
 foreign key (projNo) references proj(projNumber);
 
-7. 
+--7. 
+insert into emp_proj 
+values (&empNo, &projNo, &hoursWorked);
+
+-- 9. 
+alter table emp
+add email varchar(255);
+
+
+-- 10
+-- This statement throws an error because there is no table named "EMPLOYEES"
+
+-- Missing a value for the SEX colum
+-- The values for the SALARY and POSITION columns are in the wrong order
+-- Missing a value for the EMAIL column that was added
+-- Salary value does not meet the constraint 
+insert into employees values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'X', 10000, 10);
+
+-- 11
+-- The corrected version of the statement above
+insert into emp
+values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'M', 12000, 'X', 10, null);
 
 -- =======================================
 
