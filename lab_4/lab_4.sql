@@ -11,20 +11,20 @@ create table EMP (
     sex char(8) check (sex = 'M' or sex = 'F'),
     salary number(6,0) check (salary >= 12000),
     position varchar(255),
-    deptNo number(2, 0)
+    deptNo number(2, 0) not null
 );
 
 create table DEPT (
-    deptNumber number(4,0) primary key,
+    deptNumber number(2,0) primary key,
     deptName varchar(255),
-    Mgr varchar(255),
+    Mgr number(4, 0) not null,
     projNumber number(2,0) unique
 );
 
 create table PROJ (
     projNumber number(2, 0) unique,
     projName varchar(255),
-    deptNum number(2, 0)
+    deptNum number(2, 0) not null
 );
 
 create table EMP_PROJ (
@@ -87,6 +87,18 @@ VALUES (40,'Product Z',80);
 INSERT INTO proj(projNumber,projName,deptNum) 
 VALUES (50,'Mobile Apps',60);
 
+
+-- Foreign keys
+
+-- DEPT
+alter table dept
+add constraint manager_empNo
+foreign key (mgr) references emp(empNo);
+
+-- PROJ
+alter table proj
+add constraint dept_number
+foreign key (deptnum) references dept(deptnumber);
 
 select * from emp;
 select * from dept;
