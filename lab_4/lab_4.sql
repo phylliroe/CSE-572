@@ -34,7 +34,7 @@ create table EMP_PROJ (
     primary key (empNo, projNo)
 );
 
-
+-- emp insert
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
 VALUES (1000,'Steven','King','731 Fondren, Houston TX','M',30000,'Programmer',60);
 
@@ -60,7 +60,7 @@ INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo)
 VALUES (1444,'Peter','Vargas','975 Dallas, Houston, TX','M',20000,'Sales  Representative',80);
 
 
-
+-- dept insert
 INSERT INTO dept(deptNumber,deptName,Mgr) 
 VALUES (20,'Marketing',1760);
 
@@ -70,6 +70,22 @@ VALUES (60,'IT',1740);
 INSERT INTO dept(deptNumber,deptName,Mgr)
 VALUES (80,'Sales',2060);
 
+
+-- proj insert
+INSERT INTO proj(projNumber,projName,deptNum) 
+VALUES (10,'Product X',20);
+
+INSERT INTO proj(projNumber,projName,deptNum) 
+VALUES (20,'Product Y',20);
+
+INSERT INTO proj(projNumber,projName,deptNum)
+VALUES (30,'Computerization',60);
+
+INSERT INTO proj(projNumber,projName,deptNum) 
+VALUES (40,'Product Z',80);
+
+INSERT INTO proj(projNumber,projName,deptNum) 
+VALUES (50,'Mobile Apps',60);
 
 
 select * from emp;
@@ -81,3 +97,4 @@ drop table emp;
 drop table dept;
 drop table proj;
 drop table emp_proj;
+
