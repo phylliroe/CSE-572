@@ -3,6 +3,7 @@
 -- Course: CSE 572
 -- Assignment: Lab #4
 
+-- 2. Create tables with constraints 
 create table EMP (
     empNo number(4, 0) primary key,
     fname varchar(255),
@@ -34,6 +35,8 @@ create table EMP_PROJ (
     primary key (empNo, projNo)
 );
 
+
+-- 4. Insert data into tables using CSV to SQL generated statements 
 -- emp insert
 INSERT INTO emp(empNo,fname,lname,address,sex,salary,position,deptNo) 
 VALUES (1000,'Steven','King','731 Fondren, Houston TX','M',30000,'Programmer',60);
@@ -88,7 +91,11 @@ INSERT INTO proj(projNumber,projName,deptNum)
 VALUES (50,'Mobile Apps',60);
 
 
--- Foreign keys
+-- 6. Foreign keys
+-- EMP
+alter table emp
+add constraint department
+foreign key (deptNo) references dept(deptNumber);
 
 -- DEPT
 alter table dept
@@ -99,6 +106,19 @@ foreign key (mgr) references emp(empNo);
 alter table proj
 add constraint dept_number
 foreign key (deptnum) references dept(deptnumber);
+
+-- EMP_PROJ
+alter table emp_proj
+add constraint emp_number
+foreign key (empNo) references emp(empNo);
+
+alter table emp_proj
+add constraint proj_number
+foreign key (projNo) references proj(projNumber);
+
+7. 
+
+-- =======================================
 
 select * from emp;
 select * from dept;
