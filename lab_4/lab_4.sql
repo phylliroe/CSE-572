@@ -124,34 +124,18 @@ values (&empNo, &projNo, &hoursWorked);
 alter table emp
 add email varchar(255);
 
-
-
-----??????????????????????????
 -- 10
 -- This statement throws an error because there is no table named "EMPLOYEES"
-
 -- Missing a value for the SEX colum
 -- The values for the SALARY and POSITION columns are in the wrong order
 -- Missing a value for the EMAIL column that was added
--- Salary value does not meet the constraint 
+-- Salary value does not meet the constraint
+-- The statement does not accound for the foreign key constraint
 insert into employees values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'X', 10000, 10);
 
 -- 11
 -- The corrected version of the statement above
+-- The value for DEPTNO in the new entry is null since so department number 10 exists in the DEPT table
 insert into emp
-values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'M', 12000, 'X', 10, null);
-
---??????????????????????????????????
-
--- =======================================
-
-select * from emp;
-select * from dept;
-select * from proj;
-select * from emp_proj;
-
-drop table emp;
-drop table dept;
-drop table proj;
-drop table emp_proj;
-
+values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'M', 12000, 'X', 
+(select deptNumber from dept where deptNumber=10), null);
