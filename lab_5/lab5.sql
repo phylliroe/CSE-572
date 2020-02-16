@@ -147,6 +147,11 @@ from proj p
 left join emp e on e.deptNo = p.DeptNum
 where e.position = 'Manager';
 
+-- 2. Calculate total hours to each project
+select 
+    p.projname
+from projname p;
+
 
 
 
