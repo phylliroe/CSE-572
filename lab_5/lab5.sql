@@ -149,13 +149,25 @@ where e.position = 'Manager';
 
 -- 2. Calculate total hours to each project
 select 
-    p.projname
-from projname p;
+    p.projname as PROJECT,
+    sum(ep.hoursworked) as TOTAL_HOURS
+from proj p
+join emp_proj ep on ep.projno = p.projnumber
+group by p.projname;
 
 
+-- 3. Create a view to display the hourly pay rate for each employee
+create view HOURLY_PAY as 
+select 
+    empNo,
+    fname || ' ' || lname as EMPLOYEE,
+    round(salary/408,2) as HOURLY_RATE
+from emp;
+
+select * from hourly_pay;
 
 
-
+--
 
 select * from emp;
 select * from dept;
@@ -163,7 +175,7 @@ select * from proj;
 select * from emp_proj;
 
 
-
+drop view hourly_pay;
 
 
 
