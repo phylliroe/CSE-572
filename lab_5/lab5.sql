@@ -166,8 +166,20 @@ from emp;
 
 select * from hourly_pay;
 
+--4. Find the total labor cost per employee, per project
+select 
+    e.empno,
+    sum(ep.hoursworked) * (select hourly_rate from hourly_pay where hourly_pay.empno = e.empno) as TOTAL
+from emp e
+join emp_proj ep on ep.empno = e.empno 
+group by e.empno;
 
---
+select 
+    e.empno,
+    e.fname || ' ' || e.lname as EMPLOYEE,
+    p.projname
+from emp e
+join proj p on p.deptnum = e.deptno;
 
 select * from emp;
 select * from dept;
