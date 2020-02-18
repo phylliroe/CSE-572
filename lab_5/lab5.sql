@@ -182,10 +182,48 @@ add BIRTH_DATE varchar(255);
 alter table emp
 add HIRE_DATE varchar(255);
 
-insert into emp e
-select hire_date from hr.employees hre
-where hre.empno = e.empno;
+update emp
+set birth_date = '04/30/1995', hire_date = '05/01/2010'
+where empno ='1000';
 
+update emp
+set birth_date = '12/31/1986', hire_date = '01/02/2018'
+where empno ='1007';
+
+update emp
+set birth_date = '07/12/1964', hire_date = '10/15/2014'
+where empno ='2002';
+
+update emp
+set birth_date = '02/28/1976', hire_date = '06/15/2009'
+where empno ='1760';
+
+update emp
+set birth_date = '09/10/1990', hire_date = '09/02/2011'
+where empno ='1740';
+
+update emp
+set birth_date = '06/25/1980', hire_date = '04/01/2013'
+where empno ='2060';
+
+update emp
+set birth_date = '05/05/1999', hire_date = '08/01/2019'
+where empno ='2000';
+
+update emp
+set birth_date = '01/24/1993', hire_date = '07/15/2012'
+where empno ='1444';
+
+-- 6 Create a new table named emp_proj_overtime
+create table emp_proj_overtime (
+    empno number(4,0) unique,
+    hoursworked number(4, 2),
+    projno number(4, 0) unique,
+    hourOt number(4, 2),
+    primary key(empno, projno)
+);
+
+-- 7. Develop a trigger to track overtime when an employee exceeds 100 hours worked on a project
 
 select * from emp;
 select * from dept;
@@ -194,9 +232,11 @@ select * from emp_proj;
 
 select * from hr.employees;
 
+select substr(empno, 1) from emp;
+
 drop view hourly_pay;
 
-
+select * from emp_proj_overtime;
 
 
 
