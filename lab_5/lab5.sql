@@ -155,7 +155,6 @@ from proj p
 join emp_proj ep on ep.projno = p.projnumber
 group by p.projname;
 
-
 -- 3. Create a view to display the hourly pay rate for each employee
 create view HOURLY_PAY as 
 select 
@@ -169,23 +168,31 @@ select * from hourly_pay;
 --4. Find the total labor cost per employee, per project
 select 
     e.empno,
-    sum(ep.hoursworked) * (select hourly_rate from hourly_pay where hourly_pay.empno = e.empno) as TOTAL
-from emp e
-join emp_proj ep on ep.empno = e.empno 
-group by e.empno;
-
-select 
-    e.empno,
     e.fname || ' ' || e.lname as EMPLOYEE,
-    p.projname
+    p.projname as PROJECT,
+    ep.hoursworked * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno) as TOTAL_COST
 from emp e
-join proj p on p.deptnum = e.deptno;
+join proj p on p.deptnum = e.deptno
+join emp_proj ep on ep.empno = e.empno;
+
+-- 5. Add columns to the EMP table for the employee's birth date and hire date
+alter table emp
+add BIRTH_DATE varchar(255);
+
+alter table emp
+add HIRE_DATE varchar(255);
+
+insert into emp e
+select hire_date from hr.employees hre
+where hre.empno = e.empno;
+
 
 select * from emp;
 select * from dept;
 select * from proj;
 select * from emp_proj;
 
+select * from hr.employees;
 
 drop view hourly_pay;
 
