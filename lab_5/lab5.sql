@@ -216,14 +216,30 @@ where empno ='1444';
 
 -- 6 Create a new table named emp_proj_overtime
 create table emp_proj_overtime (
-    empno number(4,0) unique,
-    hoursworked number(4, 2),
-    projno number(4, 0) unique,
+    empno number(4,0),
+    projno number(4, 0),
     hourOt number(4, 2),
     primary key(empno, projno)
 );
 
+
+update emp_proj
+set hoursworked = 100
+where empno = 1000 and projno = 30;
+
 -- 7. Develop a trigger to track overtime when an employee exceeds 100 hours worked on a project
+create or replace trigger overtime_trigger
+after insert or update of hoursworked on emp_proj
+for each row when (new.hoursworked > 100)
+begin
+    insert into emp_proj_overtime(empno, projno, hourot) values(:new.empno, :new.projno, (new.hoursworked - 100));    
+    
+    exception when dup_val_on_index then
+    update emp_proj_overtime epo
+    set epo.hourot = (:new.hoursworked - 100)
+    where epo.empno = :old.empno and epo.projno = :old.projno;
+end;
+/
 
 select * from emp;
 select * from dept;
@@ -232,12 +248,13 @@ select * from emp_proj;
 
 select * from hr.employees;
 
-select substr(empno, 1) from emp;
-
-drop view hourly_pay;
 
 select * from emp_proj_overtime;
 
+
+
+
+drop table emp_proj_overtime;
 
 
 
