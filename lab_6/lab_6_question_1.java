@@ -20,11 +20,11 @@ class Question_1
         {
             System.out.println("Enter Employee ID: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-            String name = reader.readLine();
+            String empno = reader.readLine();
 
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "aloopperez", "la8799");
-            String query = "select * from emp where empno = " + name;
+            String query = "select * from emp where empno = " + empno;
             PreparedStatement pstm_employees = con.prepareStatement(query);
             ResultSet rs_employees = pstm_employees.executeQuery();
     
