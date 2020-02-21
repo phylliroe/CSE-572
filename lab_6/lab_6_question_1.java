@@ -18,23 +18,17 @@ class Question_1
     {
         try
         {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-
-            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "aloopperez", "la8799");
-
             System.out.println("Enter Employee ID: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String name = reader.readLine();
-            
+
+            Class.forName("oracle.jdbc.driver.OracleDriver");
+            Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "aloopperez", "la8799");
             String query = "select * from emp where empno = " + name;
-
-
             PreparedStatement pstm_employees = con.prepareStatement(query);
             ResultSet rs_employees = pstm_employees.executeQuery();
-
-            System.out.println(" ");
     
-            System.out.println("Emplyoee Information: ");
+            System.out.println("\n" + "Emplyoee Information: ");
             while (rs_employees.next())
             {
                 System.out.println("Employee ID:" + rs_employees.getString(1));
