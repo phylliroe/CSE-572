@@ -107,6 +107,7 @@ select
 from hr.employees;
 -- 10a. Display the contents of the EMPLOYEES_VU view 
 select * from EMPLOYEE_UV;
+desc EMPLOYEE_UV;
 -- 10b. Select the view name and text from the USER_VIEWS data dictionary view. 
 select 
     view_name,
@@ -130,6 +131,7 @@ from hr.employees
 where department_id = '50'; 
 -- 11a. Display the structure and contents of DEPT50 view. 
 select * from DEPT50;
+desc DEPT50;
 -- 11b. Select the view name and text from the USER_VIEWS data dictionary view. 
 select 
     view_name,

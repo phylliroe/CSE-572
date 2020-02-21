@@ -18,8 +18,7 @@ create table EMP (
 create table DEPT (
     deptNumber number(2,0) primary key,
     deptName varchar(255),
-    Mgr number(4, 0) not null,
-    projNumber number(2,0) unique
+    Mgr number(4, 0) not null
 );
 
 create table PROJ (
@@ -139,3 +138,6 @@ insert into employees values (1172, 'joe', 'Calvert', '672 White Pine, Austin, T
 insert into emp
 values (1172, 'joe', 'Calvert', '672 White Pine, Austin, TX', 'M', 12000, 'X', 
 (select deptNumber from dept where deptNumber=10), null);
+
+
+select * from dept;

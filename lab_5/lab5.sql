@@ -1,8 +1,7 @@
-
-
---=======================================
--- LAB 5
---=======================================
+-- Name: Andrew Loop-Perez
+-- ID: 006198799
+-- Course: CSE 572 Winter 2020
+-- Assignment: Lab #5
 
 -- 1. List all project names and the managers in charge of the projects
 select 
@@ -87,12 +86,17 @@ create table emp_proj_overtime (
     primary key(empno, projno)
 );
 
-
-update emp_proj
-set hoursworked = 100
-where empno = 1000 and projno = 30;
-
 -- 7. Develop a trigger to track overtime when an employee exceeds 100 hours worked on a project
+-- Trigger does not work. Attempting to run a statement that calls the trigger results in the following 
+-- error message: 
+-- 
+-- SQL Error: ORA-04098: trigger 'ALOOPPEREZ.OVERTIME_TRIGGER' is invalid and failed re-validation
+-- 04098. 00000 -  "trigger '%s.%s' is invalid and failed re-validation"
+-- *Cause:   A trigger was attempted to be retrieved for execution and was
+--           found to be invalid.  This also means that compilation/authorization
+--           failed for the trigger.
+-- *Action:  Options are to resolve the compilation/authorization errors,
+--           disable the trigger, or drop the trigger.
 create or replace trigger overtime_trigger
 after insert or update of hoursworked on emp_proj
 for each row when (new.hoursworked > 100)
@@ -106,6 +110,24 @@ begin
 end;
 /
 
+-- 8. Modify the query from question 4 to account for overtime pay
+select 
+    e.empno,
+    e.fname || ' ' || e.lname as EMPLOYEE,
+    p.projname as PROJECT,
+    (
+    case when ep.hoursworked > 100 then
+        ( 100 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno) ) +
+        ((ep.hoursworked - 100) * (2 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)))
+    else 
+        ep.hoursworked * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)
+    end) as TOTAL_COST
+from emp e
+join proj p on p.deptnum = e.deptno
+join emp_proj ep on ep.empno = e.empno;
+
+
+
 select * from emp;
 select * from dept;
 select * from proj;
@@ -118,8 +140,6 @@ select * from emp_proj_overtime;
 drop table emp_proj_overtime;
 
 
-
-drop trigger aloopperez.overtime_trigger;
 
 
 
