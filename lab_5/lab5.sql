@@ -82,31 +82,31 @@ where empno ='1444';
 create table emp_proj_overtime (
     empno number(4,0),
     projno number(4, 0),
-    hourOt number(4, 2),
+    hourOt number(6, 2),
     primary key(empno, projno)
 );
 
+update emp_proj
+set hoursworked = 250
+where empno = 1000 and projno = 30;
+
+update emp_proj
+set hoursworked = 150
+where empno = 2002 and projno = 10;
+
 -- 7. Develop a trigger to track overtime when an employee exceeds 100 hours worked on a project
--- Trigger does not work. Attempting to run a statement that calls the trigger results in the following 
--- error message: 
--- 
--- SQL Error: ORA-04098: trigger 'ALOOPPEREZ.OVERTIME_TRIGGER' is invalid and failed re-validation
--- 04098. 00000 -  "trigger '%s.%s' is invalid and failed re-validation"
--- *Cause:   A trigger was attempted to be retrieved for execution and was
---           found to be invalid.  This also means that compilation/authorization
---           failed for the trigger.
--- *Action:  Options are to resolve the compilation/authorization errors,
---           disable the trigger, or drop the trigger.
 create or replace trigger overtime_trigger
 after insert or update of hoursworked on emp_proj
+referencing old as old new as new
 for each row when (new.hoursworked > 100)
 begin
-    insert into emp_proj_overtime(empno, projno, hourot) values(:new.empno, :new.projno, (new.hoursworked - 100));    
+    insert into emp_proj_overtime(empno, projno, hourot) values(:new.empno, :new.projno, :new.hoursworked - 100);    
     
     exception when dup_val_on_index then
-    update emp_proj_overtime epo
-    set epo.hourot = (:new.hoursworked - 100)
-    where epo.empno = :old.empno and epo.projno = :old.projno;
+        update emp_proj_overtime epo
+        set epo.hourot = :new.hoursworked - 100
+        where epo.empno = :old.empno and epo.projno = :old.projno;
+    commit;
 end;
 /
 
@@ -127,6 +127,22 @@ join proj p on p.deptnum = e.deptno
 join emp_proj ep on ep.empno = e.empno;
 
 
+select 
+    e.empno,
+    e.fname || ' ' || e.lname as EMPLOYEE,
+    p.projname as PROJECT,
+    (
+    case when ep.hoursworked > 100 then
+        (100 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)) +
+        ((select hourot from emp_proj_overtime epo where epo.empno = ep.empno) * (2 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)))
+    else 
+        ep.hoursworked * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)
+    end) as TOTAL_COST
+from emp e
+join proj p on p.deptnum = e.deptno
+join emp_proj ep on ep.empno = e.empno;
+
+
 
 select * from emp;
 select * from dept;
@@ -139,7 +155,7 @@ select * from emp_proj_overtime;
 
 drop table emp_proj_overtime;
 
-
+drop trigger overtime_trigger;
 
 
 
