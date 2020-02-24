@@ -143,7 +143,6 @@ join proj p on p.deptnum = e.deptno
 join emp_proj ep on ep.empno = e.empno;
 
 
-
 select * from emp;
 select * from dept;
 select * from proj;
@@ -156,6 +155,10 @@ select * from emp_proj_overtime;
 drop table emp_proj_overtime;
 
 drop trigger overtime_trigger;
+
+update emp_proj
+set hoursworked = 200
+where empno = 1000 and projno = 30;
 
 
 
