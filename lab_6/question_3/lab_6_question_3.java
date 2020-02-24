@@ -39,7 +39,6 @@ class Question_3
 
             // Create the statement
             update = update + new_hours + " where empno = " + empno + " and projno = " + projno;
-            //System.out.println(update); 
 
             // Execute the update statement
             PreparedStatement emp_proj_statement = con.prepareStatement(update);

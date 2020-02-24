@@ -18,17 +18,21 @@ class Question_1
     {
         try
         {
+            // Prompt the user for the employee's ID
             System.out.println("Enter Employee ID: ");
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             String empno = reader.readLine();
 
+            // Select the employee's information from the EMP table
             Class.forName("oracle.jdbc.driver.OracleDriver");
             Connection con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:orcl", "aloopperez", "la8799");
             String query = "select * from emp where empno = " + empno;
             PreparedStatement pstm_employees = con.prepareStatement(query);
             ResultSet rs_employees = pstm_employees.executeQuery();
     
+            // Disaply the employee informations
             System.out.println("\n" + "Emplyoee Information: ");
+            
             while (rs_employees.next())
             {
                 System.out.println("Employee ID:" + rs_employees.getString(1));
@@ -42,7 +46,6 @@ class Question_1
                 System.out.println("Birth Date: " + rs_employees.getString(10));
                 System.out.println("Hire Date: " + rs_employees.getString(11) +"\n");
             }
-        
         }   
         catch(Exception e)
         {

@@ -4,7 +4,6 @@ ID: 006198799
 Course: CSE 572 Winter 2020
 Assignment: Lab #6 Question 4
 
-
 4. Display overtime pay for each employees on projects that employee assigned to and 
    calculate the total of overtime hours and amount to pay.
 */

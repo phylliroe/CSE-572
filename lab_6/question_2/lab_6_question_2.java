@@ -26,6 +26,8 @@ class Question_2
             BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
             Scanner scanner = new Scanner(System.in);
 
+            // Prompt the user to enter 1 to insert into the EMP table
+            // or 2 to update an existing entry in the EMP table
             System.out.println("Enter 1 to Insert or 2 to Update: ");
             int action = Integer.parseInt(scanner.nextLine());
 
@@ -92,7 +94,7 @@ class Question_2
                 emp_insert_statement.executeUpdate();
                 System.out.println("Values inserted into EMP table");
             }
-            // Update existing vlaues
+            // Update existing values
             else if (action == 2)
             {
                 // Create the beginning of the update statement
