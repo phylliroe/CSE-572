@@ -116,22 +116,6 @@ select
     p.projname as PROJECT,
     (
     case when ep.hoursworked > 100 then
-        ( 100 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno) ) +
-        ((ep.hoursworked - 100) * (2 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)))
-    else 
-        ep.hoursworked * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)
-    end) as TOTAL_COST
-from emp e
-join proj p on p.deptnum = e.deptno
-join emp_proj ep on ep.empno = e.empno;
-
-
-select 
-    e.empno,
-    e.fname || ' ' || e.lname as EMPLOYEE,
-    p.projname as PROJECT,
-    (
-    case when ep.hoursworked > 100 then
         (100 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)) +
         ((select hourot from emp_proj_overtime epo where epo.empno = ep.empno) * (2 * (select hourly_rate from hourly_pay where hourly_pay.empno = ep.empno)))
     else 
@@ -149,8 +133,6 @@ select * from emp_proj;
 select * from emp_proj_overtime;
 
 drop trigger overtime_trigger;
-
-
 
 
 
