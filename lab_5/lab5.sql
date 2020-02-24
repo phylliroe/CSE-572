@@ -87,7 +87,7 @@ create table emp_proj_overtime (
 );
 
 update emp_proj
-set hoursworked = 250
+set hoursworked = 150
 where empno = 1000 and projno = 30;
 
 update emp_proj
@@ -106,7 +106,6 @@ begin
         update emp_proj_overtime epo
         set epo.hourot = :new.hoursworked - 100
         where epo.empno = :old.empno and epo.projno = :old.projno;
-    commit;
 end;
 /
 
@@ -147,18 +146,9 @@ select * from emp;
 select * from dept;
 select * from proj;
 select * from emp_proj;
-
-select * from hr.employees;
-
 select * from emp_proj_overtime;
 
-drop table emp_proj_overtime;
-
 drop trigger overtime_trigger;
-
-update emp_proj
-set hoursworked = 200
-where empno = 1000 and projno = 30;
 
 
 
