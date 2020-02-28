@@ -139,6 +139,6 @@ set hoursworked = 150
 where empno = 1000 and projno =50;
 
 
-
+select sum(hourot) from emp_proj_overtime where empno = '1000';
 
 
