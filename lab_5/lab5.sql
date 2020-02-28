@@ -134,7 +134,9 @@ select * from emp_proj_overtime;
 
 drop trigger overtime_trigger;
 
-
+update emp_proj
+set hoursworked = 150
+where empno = 1000 and projno =50;
 
 
 
